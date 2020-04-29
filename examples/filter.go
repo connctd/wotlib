@@ -318,17 +318,24 @@ func main() {
         }
     `)
 
-	expanded, err := wotlib.FromBytes(input)
-	if err != nil {
-		fmt.Println("Failed expand", err)
-		return
+	// define additionally used schema
+	var iotSchema = wotlib.SchemaMapping{
+		Prefix: wotlib.SchemaPrefix("iot"),
+		IRI:    "http://iotschema.org/",
 	}
 
-	b, err := expanded.Compact()
+	// append it so its used during compaction
+	wotlib.AppendSchema(iotSchema)
+
+	expandedTD, err := wotlib.FromBytes(input)
 	if err != nil {
-		fmt.Println("Failed to compact", err)
-		return
+		panic(err)
 	}
 
-	fmt.Printf("%s", string(b))
+	// retrieve all property affordances that match given criteria
+	props := expandedTD.GetPropertyAffordances(wotlib.PropertyConstraint{
+		Type: &[]string{iotSchema.IRIPrefix("SwitchStatus")},
+	})
+
+	fmt.Printf("Result: %v", props)
 }

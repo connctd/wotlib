@@ -39,20 +39,20 @@ func (s SchemaMapping) IRIPrefix(nodeID string) string {
 	return string(s.IRI) + nodeID
 }
 
-// IRIContext defines a special type of context
-// We are assuming such type to simplify working with tds
-type IRIContext map[SchemaPrefix]string
+func (p SchemaPrefix) String() string {
+	return string(p)
+}
 
-// ContextContainer wraps the context
-type ContextContainer struct {
-	Context map[string]interface{} `json:"@context"`
+// AppendSchema appends a schema to the default context
+func AppendSchema(m SchemaMapping) {
+	DefaultContext[m.Prefix.String()] = m.IRI
 }
 
 // DefaultContext defines the default context
-// Modifications to existing prefixes might corrupt parsing process
+// Modifications to existing prefixes will corrupt parsing process
 var DefaultContext = map[string]interface{}{
-	string(SchemaWoT.Prefix):        SchemaWoT.IRI,
-	string(SchemaHypermedia.Prefix): SchemaHypermedia.IRI,
-	string(SchemaRdfType.Prefix):    SchemaRdfType.IRI,
-	string(SchemaJSON.Prefix):       SchemaJSON.IRI,
+	SchemaWoT.Prefix.String():        SchemaWoT.IRI,
+	SchemaHypermedia.Prefix.String(): SchemaHypermedia.IRI,
+	SchemaRdfType.Prefix.String():    SchemaRdfType.IRI,
+	SchemaJSON.Prefix.String():       SchemaJSON.IRI,
 }
