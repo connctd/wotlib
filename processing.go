@@ -56,9 +56,6 @@ func FromBytes(b []byte) (ExpandedThingDescription, error) {
 	return td[0], nil
 }
 
-// RawThingDescription describes a raw thing description
-type RawThingDescription json.RawMessage
-
 // Compact compacts the thing description
 func (e *ExpandedThingDescription) Compact() (json.RawMessage, error) {
 	compactedBytes, err := compact(e)
