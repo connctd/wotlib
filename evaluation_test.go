@@ -77,7 +77,7 @@ var fulfillTests = []struct {
 			ID:   asStringPointer("uri:urn:ed2f1fb3-cbf8-479e-99bb-ef9968e5eed6"),
 			Name: asStringPointer("LightOne"),
 			ActionConstraint: &ActionConstraint{
-				Index:        asStringPointer("lamp-setOn"),
+				Name:         asStringPointer("lamp-setOn"),
 				IsSafe:       asBooleanPointer(false),
 				IsIdempotent: asBooleanPointer(true),
 				Type: &[]string{
@@ -87,7 +87,7 @@ var fulfillTests = []struct {
 				InputConstraint: &InputConstraint{
 					DataType: asStringPointer(SchemaJSON.IRIPrefix("ObjectSchema")),
 					DataPropertyConstraint: &DataPropertyConstraint{
-						Index: asStringPointer("on"),
+						Name: asStringPointer("on"),
 						Type: &[]string{
 							iotSchema.IRIPrefix("StatusData"),
 						},
@@ -96,10 +96,10 @@ var fulfillTests = []struct {
 				},
 			},
 			PropertyConstraint: &PropertyConstraint{
-				Index: asStringPointer("lamp-on"),
-				Type:  &[]string{iotSchema.IRIPrefix("SwitchStatus")},
+				Name: asStringPointer("lamp-on"),
+				Type: &[]string{iotSchema.IRIPrefix("SwitchStatus")},
 				DataPropertyConstraint: &DataPropertyConstraint{
-					Index:    asStringPointer("value"),
+					Name:     asStringPointer("value"),
 					Type:     &[]string{iotSchema.IRIPrefix("StatusData")},
 					DataType: asStringPointer(SchemaJSON.IRIPrefix("BooleanSchema")),
 				},

@@ -1,12 +1,16 @@
 package wotlib
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestTDSet(t *testing.T) {
 	emptySet := NewExpandedThingDescriptionSet()
 	if len(emptySet) != 0 {
 		t.Fatalf("Set has invalid length")
 	}
+
+	DefaultJSONDLDOptions.CompactArrays = false
 
 	expanded, err := FromBytes(testTDOne)
 	if err != nil {

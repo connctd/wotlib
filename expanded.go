@@ -41,7 +41,7 @@ type ExpandedThingDescription struct {
 
 // ExpandedActionAffordance defines an expanded action affordance within a td
 type ExpandedActionAffordance struct {
-	Index        string                 `json:"@index"`
+	Name         StringNode             `json:"https://www.w3.org/2019/wot/td#name"`
 	Type         []string               `json:"@type,omitempty"`
 	Form         ExpandedFormNode       `json:"https://www.w3.org/2019/wot/td#hasForm"`
 	Input        ExpandedDataSchemaNode `json:"https://www.w3.org/2019/wot/td#hasInputSchema"`
@@ -51,7 +51,7 @@ type ExpandedActionAffordance struct {
 
 // ExpandedPropertyAffordance defines an expanded property affordance within a td
 type ExpandedPropertyAffordance struct {
-	Index        string                 `json:"@index"`
+	Name         StringNode             `json:"https://www.w3.org/2019/wot/td#name"`
 	Type         []string               `json:"@type,omitempty"`
 	DataType     IDNode                 `json:"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"`
 	Properties   []ExpandedDataProperty `json:"https://www.w3.org/2019/wot/json-schema#properties"`
@@ -81,9 +81,9 @@ type ExpandedDataSchema struct {
 
 // ExpandedDataProperty is part of a data schema
 type ExpandedDataProperty struct {
-	Index    string   `json:"@index"`
-	Type     []string `json:"@type,omitempty"`
-	DataType IDNode   `json:"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"`
+	Name     StringNode `json:"https://www.w3.org/2019/wot/json-schema#propertyName"`
+	Type     []string   `json:"@type,omitempty"`
+	DataType IDNode     `json:"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"`
 }
 
 // ExpandedFormNode is an array of expanded forms

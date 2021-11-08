@@ -141,7 +141,7 @@ func (t ExpandedThingDescription) Fulfills(c ThingConstraint) bool {
 
 // PropertyConstraint defines a property constraint
 type PropertyConstraint struct {
-	Index                  *string
+	Name                   *string
 	Type                   *[]string
 	DataType               *string
 	DataPropertyConstraint *DataPropertyConstraint
@@ -150,7 +150,7 @@ type PropertyConstraint struct {
 
 // Fulfills checks if PropertyConstraint is fulfilled by given ExpandedPropertyAffordance
 func (t ExpandedPropertyAffordance) Fulfills(c PropertyConstraint) bool {
-	if c.Index != nil && *c.Index != t.Index {
+	if c.Name != nil && *c.Name != t.Name.Value() {
 		return false
 	}
 
@@ -187,7 +187,7 @@ func (t ExpandedPropertyAffordance) Fulfills(c PropertyConstraint) bool {
 
 // ActionConstraint defines an action constraint
 type ActionConstraint struct {
-	Index           *string
+	Name            *string
 	Type            *[]string
 	InputConstraint *InputConstraint
 	IsIdempotent    *bool
@@ -196,7 +196,7 @@ type ActionConstraint struct {
 
 // Fulfills checks if ActionConstraint is fulfilled by given ExpandedActionAffordance
 func (t ExpandedActionAffordance) Fulfills(c ActionConstraint) bool {
-	if c.Index != nil && *c.Index != t.Index {
+	if c.Name != nil && *c.Name != t.Name.Value() {
 		return false
 	}
 
@@ -253,14 +253,14 @@ func (t ExpandedDataSchemaNode) Fulfills(c InputConstraint) bool {
 
 // DataPropertyConstraint defines a data property constraint
 type DataPropertyConstraint struct {
-	Index    *string
+	Name     *string
 	Type     *[]string
 	DataType *string
 }
 
 // Fulfills checks if DataPropertyConstraint is fulfilled by given ExpandedDataProperty
 func (t ExpandedDataProperty) Fulfills(c DataPropertyConstraint) bool {
-	if c.Index != nil && *c.Index != t.Index {
+	if c.Name != nil && *c.Name != t.Name.Value() {
 		return false
 	}
 
