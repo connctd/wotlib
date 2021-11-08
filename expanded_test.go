@@ -10,8 +10,6 @@ func TestTDSet(t *testing.T) {
 		t.Fatalf("Set has invalid length")
 	}
 
-	DefaultJSONDLDOptions.CompactArrays = false
-
 	expanded, err := FromBytes(testTDOne)
 	if err != nil {
 		t.Fatalf("Failed to build expanded td: %v", err)
